@@ -37,7 +37,7 @@ COPY etc/FIXED_Foxtrot.pub ${TECO_CONF_DIR}
 VOLUME ["/var/log/teco", "/opt/teco"]
 
 # Start PLCComS
-COPY start.sh ${TECO_DIR}/start.sh
+COPY /start.sh ${TECO_DIR}/start.sh
 CMD ["cd $TECO_DIR"]
 CMD ["./start.sh"]
 
