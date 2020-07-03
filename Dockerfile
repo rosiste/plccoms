@@ -20,7 +20,7 @@ RUN mkdir -p ${TECO_LIB_DIR}/lib_x86
 RUN mkdir -p ${TECO_LIB_DIR}/lib_x86_64
 
 # Copy binary file
-COPY bin/* ${TECO_DIR}
+COPY bin/* ${TECO_DIR}/
 RUN chmod 700 ${TECO_DIR}/PLCComS*
 
 # Copy lib file
