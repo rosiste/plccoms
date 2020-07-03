@@ -1,0 +1,36 @@
+UJEDNÁNÍ
+mezi firmou Teco a.s. Kolín (dále jen výrobce) a uživatelem softwarového produktu:
+
+I. Pøedmìtem tohoto ujednání je popis pravidel používání softwarového produktu (dále jen software). 
+
+II. Jednání, které je zejména zakázáno:
+a) jakýmkoliv zpùsobem software analyzovat, mìnit, pøekládat jej do jiných programovacích èi národních 
+jazykù nebo do zdrojového tvaru nebo do tvaru assembler, zahrnout jej do jiného software a šíøit produkty 
+takto vzniklé, odvozené od pùvodního software a jakkoliv jinak zasahovat do vnitøní struktury software, s 
+výjimkou pøípadù uvedených v této smlouvì anebo výslovnì povolených autorským zákonem,
+b) jakékoliv šíøení software za úplatu.
+
+III. Odpovìdnost výrobce
+Používání software je na bázi "tak, jak je", bez jakékoli záruky. Výrobce na sebe nebere jakoukoliv 
+odpovìdnost za ztrátu výnosù, ziskù, dat nebo za speciální nepøímé následné nebo nahodilé škody. 
+Výrobce neposkytuje žádnou záruku ani na èinnost software, ani na jeho zpùsobilost k jakémukoli 
+zvláštnímu upotøebení, používání nebo úèelu. Výrobce zejména neruèí za škody vzniklé nesprávným 
+provozováním software v rozporu s podmínkami, uvedenými v uživatelské dokumentaci. 
+Výrobce ani jeho smluvní partneøi nenesou v žádném pøípadì odpovìdnost za ušlý zisk nebo jakoukoli 
+jinou komerèní ztrátu, vèetnì a bez omezení zvláštních, vedlejších, trestních a jiných škod, a to i v  
+pøípadì, kdy výrobce nebo jeho smluvní partneøi jsou pøedem upozornìni na možnost takových škod. 
+Veškeré riziko vyplývající z kvality a výkonu software je pøeneseno na uživatele software. V pøípadì, že 
+software se ukáže jako vadný, uživatel software, a nikoli výrobce, pøebírá veškeré výlohy spojené s 
+jakýmikoli opravami a údržbou. 
+
+IV. Doba platnosti ujednání
+Toto ujednání zùstává v platnosti, pokud uživatel software neporuší podmínky tohoto ujednání. V 
+pøípadì, že uživatel software podmínky ujednání poruší, pozbývá toto ujednání automaticky platnost.
+
+V. Závìreèná ustanovení
+Toto ujednání je v souvislosti s užíváním software kompletní a úplnou smlouvou mezi uživatelem software 
+a výrobcem. Toto ujednání je náhradou za veškerou pøedcházející, souèasnou, mluvenou i psanou 
+komunikaci mezi uživatelem software a výrobcem a má rozhodující význam v øešení sporných nebo 
+dodateènì dohodnutých podmínek, nabídek, objednávek mezi stranami zahrnutými v tomto ujednání po 
+dobu jeho platnosti. Jakékoliv úpravy tohoto ujednání jsou povoleny pouze v pøípadì sepsání nové 
+smlouvy nebo dodatku, který bude podepsán obìma zastoupenými stranami.

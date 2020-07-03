@@ -1,0 +1,535 @@
+
+	+---------------------------------------------------------+
+	|               Komunikacni server PLCComS.               |
+	+---------------------------------------------------------+
+
+
+---------------------------------------------------------------------------
+    Verze 5.4					Zkompilovano 30.04.2020
+---------------------------------------------------------------------------
+
+	- Do prikazu SET: pridano vyhodnoceni chybne hodnoty.
+	- Odstraneno zpozdeni u jednotlivych klientu pri dlouho trvajicim dotazu. Napr.: dlouhy seznam prikazu GET:, LIST: nebo GETMEM:, GETFILE:.
+
+	- Opravena chyba pri nastaveni promennych typu BOOL. Jednotlive bity se nastavuji primo v PLC.
+	- Opravena chyba v prikazu SET:. U zakazanych promennych se negenerovala zprava DIFF:.
+	- Opravena chyba poslani obsahu souboru jinemu klientovi prikazem GETFILE:. Problem pri vypadku spojeni jednoho z nich.
+	- Opravena chyba nezname promenne v prikazu GET: a LIST: s maskou. Vraci se prazdny seznam a ne chyba.
+	- Opravena chyba "Bus error" na platforme ARMHF. Problem s vypoctem odchylky delta.
+
+---------------------------------------------------------------------------
+    Verze 5.3					Zkompilovano 20.02.2020
+---------------------------------------------------------------------------
+
+	- Opravena chyba neuzavirani UDP socketu na EPSNET komunikaci.
+
+---------------------------------------------------------------------------
+    Verze 5.2					Zkompilovano 05.12.2019
+---------------------------------------------------------------------------
+
+	- Pridan cas pripojeni do seznamu sitovych spojeni.
+
+	- Opravena chyba neuzavrenych UDP socketu.
+	- Opravena chyba logovani. Pokud PUB soubor nesel zpracovat, tak se rychle plni log.
+	- Opravena chyba zpracovani PUB souboru. Pokud je chybna adresa promenne, tak se radek preskocit a neskonci parsovani.
+	- Opravena chyba zpracovani PUB souboru. Pokud zacina prazdnym radkem, tak se preskoci a parsovani pokracuje.
+	- Opravena chyba v logovani ve funkci generovani DIFF: zprav.
+	- Opravena chyba pripojeni telnet protokolem. Problem se znaky "telnet negotiation". Server nerozumel prikazum.
+
+---------------------------------------------------------------------------
+    Verze 5.1					Zkompilovano 18.10.2019
+---------------------------------------------------------------------------
+
+	- Pridan prepinac -v pro zapnuti podrobnejsich logu.
+	- Do logu pridana informace o tom, na ktere ip adrese a portu server posloucha.
+	- U cisla signalu se vypisuje i jeho jmeno.
+	- Optimalizace rychlosti.
+	- Do parsovani PUB souboru pridana prodleva. Je to kvuli velkemu zatizeni u velkych souboru.
+	- Instance PLC nemusi byt definovany. Pak server pouze ceka na zmenu INI souboru.
+	- Pridana hodnota 0 promenne COMM_SCHED_PRI, ktera Real-Time planovac uplne vyradi.
+	- Pridana chybova odpoved na zmenu komunikacnich parametru PLC (IPADDR, SERIAL_DEVICE, ...), pokud PLC nekomunikuje.
+
+	- Opravena chyba stahovani souboru, je-li cache vypla.
+	- Opravena chybu pristupu do pameti pri hledani konce radku. Reportoval p. Jiri Slaby.
+	- Opravena chyba, kdy server prestal reagovat na dotazy. Hazard v threadu sitove komunikace. Prepsano bez pouziti threadu.
+
+---------------------------------------------------------------------------
+    Verze 5.0					Zkompilovano 21.03.2019
+---------------------------------------------------------------------------
+
+	- Pridana instalace pro OS Linux.
+
+	- Opravena chyba: V pripade, ze INI soubor neobsahoval zadnou sekci PLC tak doslo k padu serveru.
+	- Opravena chyba: Nebylo mozne nastavit jmeno PUB souboru z aplikace iFoxtrot.
+	- Opravena chyba 'Bus error' na platforme ARMHF. Problem s datovymi typy REAL, LREAL, DT a DATE.
+	- Opravena chyba v prikazu HELP: Misto promenne 'version_epsnet' byla promenna 'epsnet_version'.
+	- Opravena chyba v prikazu GETINFO: a HELP: Misto promenne 'ipaddr' se zobrazila promenna 'ipaddr_plc'.
+
+---------------------------------------------------------------------------
+    Verze 4.9					Zkompilovano 03.07.2018
+---------------------------------------------------------------------------
+
+	- Pridana volba DATE_TIME_DECIMAL do INI souboru, ktera prepne zobrazeni datovych typu DT a DATE z INT64 na LREAL zobrazeni.
+	- Pridana podpora odchylky 'delta' pro datove typy: LINT, ULINT, DWORD, TIME a TOD
+
+	- Opravena chyba zpracovani odchylky 'delta': Nefunkcni pri zaporne zmene promenne. DIFF: se posilal vzdy.
+	- Opravena chyba zpracovani odchylky 'delta': Nefunkcni u datovych typu DT a DATE
+	- Opravena chyba, kdy se pri nenastavene IP adrese PLC posilal DIFF: promenne __PF_CRC
+
+---------------------------------------------------------------------------
+    Verze 4.8					Zkompilovano 25.04.2018
+---------------------------------------------------------------------------
+
+	- Pridana promenna IPADDR_LOCAL pro nastaveni ip adresy rozhranni, na kterem server posloucha.
+	- Na zacatek logu pridan vypis verzi.
+	- Chybove zpravy EPSNET rozsireny o anglictinu.
+
+	- Opravena chyba komunikace EPSNET. Kdyz bylo PLC v Bootu, tak nebylo mozne PLC updatovat pomoci FWUpdateru.
+	- Opraveno chovani serveru. Server loguje chybu pouze jednou a to jako odpoved na dotaz.
+
+---------------------------------------------------------------------------
+    Verze 4.7					Zkompilovano 07.12.2017
+---------------------------------------------------------------------------
+
+	- Prikaz GETFILE: a GETFILEINFO: je rozsiren o priznak 'A' nebo 'a', ktery rika, ze soubor se posila textove. Pro kodovani je pouzito BASE64.
+	  Prikaz GETFILEINFO: pak vraci velikost enkodovaneho souboru.
+
+	- Opraveno prime adresovani. V adrese se ignorovala velikost datoveho typu (%SL48, %RW10, ...).
+	- Opravena chyba testu CRC projektu. CRC se nezpracovavalo neznamenkove.
+
+---------------------------------------------------------------------------
+    Verze 4.6					Zkompilovano 22.09.2017
+---------------------------------------------------------------------------
+
+	- Pridana sekce iFoxtrot do INI souboru, ktera je potreba pro aplikaci iFoxtrot.
+	- Pridana promenna COMM_SCHED_PRI do INI souboru pro nastaveni priority.
+	- Pridano logovani chyb EPSNETU. Zatim v cestine.
+	- Odstranen podmineny preklad pro ID-XY.
+
+	- Opravena chyba ve funkci IdentPlc(). Funkce chybne interpretovala verzi SW.
+	- Opravena chyba ve stahovani souboru. Pozadavek pro stahnuti souboru neprerusil aktivni stahovani.
+	- Opraveno zpracovani neznamenkovych datovych typu: USINT, UINT, UDINT, WORD a DWORD
+
+---------------------------------------------------------------------------
+    Verze 4.5					Zkompilovano 01.03.2017
+---------------------------------------------------------------------------
+
+	- Pridana promenna FFILE_TIMEOUT_WR do INI souboru pro nastaveni hodnoty timeout u zapisovaneho souboru.
+
+	- Opravena chyba zasekavani komunikace ve verzi pro Win32.
+	- Opravena chyba v prikazu SETCONF:. Nebylo mozne zmenit PUB soubor, kdyz jeho nastaveni naledovalo tesne po nsataveni IP adresy.
+
+---------------------------------------------------------------------------
+    Verze 4.4					Zkompilovano 06.01.2017
+---------------------------------------------------------------------------
+
+	- Pridana promenna SERIAL_DEVICE_CFG do INI souboru. Promenna prirazuje RTS GPIO piny k jednotlivym seriovym rozhrannim.
+
+---------------------------------------------------------------------------
+    Verze 4.3					Zkompilovano 21.10.2016
+---------------------------------------------------------------------------
+
+	- Pridan novy parametr --terminate | -t, ktery zpusobi ukonceni serveru v pripade, ze se INI soubor zmeni.
+	- Snizeno obsazeni pameti. Data registru se ukladaji do dynamicky pridelene pameti a ne do statickeho pole.
+	- Pri zmene komunikacnich parametru PLC zkusi server aktualizovat PUB soubor a klientovi to ohlasi zpravou 250 nebo 251.
+	- Pridan zapis souboru pomoci prikazu WRITEFILE: a WRITEFILEINFO:
+	- Zrychlena reakce serveru na klientske dotazy. Krome panelu ID-18/28, ktere nemaji dostatecny vykon. To znamena, ze kdyz prijde dotaz od klienta, tak se prerusi sleep v hlavni smycce.
+	  Sleep se take prerusit v pripade zpracovani prikazu SET:. To je dulezite kvuli rychle odpovedi zpravou DIFF:.
+	- Pro mereni casu se v hlavni smycce nepouziva funkce getdifftime(), ale gettimeofday() a makro timersub().
+
+	- Opravena chyba. V pripade, ze neni nastavena promenna PUBFILE_WRITE, tak se PUB soubor hleda v korenovem adresari serveru.
+	- Opravena chyba ve vyhodnoceni chybneho totazu. Pri parsovani se nebrali v uvahu dosove konce radku. Znak '\r' pak dela problemy v chybovem hlaseni.
+	- Opravena chyba ve funkci AddPubFileRec(). Dochazelo k duplicitam generovanych klicu u promennych lezicich na stejne adrese. Klic se nyni generuje jako 16bit CRC pres jmeno promenne.
+	- Opravena chyba v parsovani PUB souboru. K chybe dochazelo u radku, ktere maji na konci komentare.
+	- Opravena chyba ve funkci DoReqCommObject(). Pri deleni zprav se pouziva vyhledavani, ktere nerozlisuje velikost pismen. Jinak nefunguje deleni zprav.
+	- Opravena chyba v prikazu DI:. Prisel-li v jednom dotazu pred prikazem DI: prikaz set, pak se neodeslala zprava DIFF:.
+	- Opravena chyba. V knihovne 'libepsnet.a' se v ethernetove komunikaci meni hodnota MESI v UDP hlavicce paketu. Puvodne byla pouzita konstanta 0x1234. Nyni se pakety cisluji od 0 a kazdny odeslany paket ma hodnotu MESI +1.
+	- Opravena chyba. Prikaz SET: nyni funguje optimalizovane i se zakazanymi promennymi, od kterych jiz nechodi DIFF: zpravy. Take u neho neni potreba provadet trideni funkci SortCliReq().
+	- Opravena chyba. Funkce CreateCLIOptimReq() zpracovava vsechny promenne a ne jen ty co jsou fixni nebo povolene. A to proto, ze klientske dotazy jsou jiz spravne sestaveny z funkce DoReqCommObject().
+	- Opravena chyba. Je-li pouzito vice sekci a v nektere nejde otevrit nejaky PUB soubor, pak se server neukonci.
+
+---------------------------------------------------------------------------
+    Verze 4.2					Zkompilovano 07.07.2016
+---------------------------------------------------------------------------
+
+	- Je-li IPADDR=0.0.0.0, tak se nekomunikuje. Komunikace se zahaji, teprve az se sdresa nastavi prikazem SETCONF:.
+	- Podpora noveho formatu PUB souboru. Soubor nema priznaky na konci radku: PUB_INOUT, PUB_IN nebo PUB_OUT.
+
+	- Opravena chyba v prikazech DI: a EN:. Pri roztrhnuti dotazu je docasne zkracena dobu cyklu na minimum. To vyrazne zrychluje nektere dotazy.
+	- Opravena chyba ve formatu IP adresy. IP adresu je mozne zadavat i s pocatecnimi nulami: 192.168.033.005.
+	- Opravena chyba u prikazu GETMEM:. Loguji se pouze chyby, jinak je log prilis velky. Problem nastava hlavne u prace s CabvasLib.
+	- Opravena chyba logovani. Informace o nezdarenem spojeni s PLC se do logu vypisuje pouze jednou. Jinak je log zbytecne velky a je-li PLC sekci vice je i neprehledny.
+	- Opravena chyba logovani. V logu chybi, u parsovani konfigurace jednotlivych sekci PLC, informace o PLC a jmenu sekce. Neni tedy jasne, ve ktere sekci je chyba.
+	- Opravena chyba pri navazani spojeni s PLC. Server nezalogoval typ spojeni, ale pouze informace o PLC.
+	- Opravena chyba v prikazu SET:. Nasledoval-li tesne po nem prikaz GET:, vratil server hodnotu z kache, ktera nebyla aktualni.
+	- Opravena chyba v prikazu SET: boolovskych promennych, lezicich na stejne adrese. Kdyz prisli dotazi tesne po sobe, nastavil se pouze posledni.
+
+---------------------------------------------------------------------------
+    Verze 4.1					Zkompilovano 25.02.2016
+---------------------------------------------------------------------------
+
+	- Pridan podrobny help pro prikaz GETINFO:.
+	- Pridany prikazy HIDE: a UNHIDE: pro nastaveni promenne do stavu 'hidden'. S takovou to promennou jde pracovat pouze pri konkretnim dotazu nebo
+	  pri skupinovem dotazu. Hromadne dotazy, jako: EN:*, DI:* a GET:*, tyto promenne ignoruji. V seznamu prikazu LIST: se na konci jmena zobrazuje
+	  znak '~'.
+
+	- Opravena chyba v prikazu GETFILEINFO: Kdyz bylo dotazu vice za sebou, prisla odpoved pouze na posledni soubor.
+	- Opravena chyba pri vicenasobnem uziti oddelovace '\n'. Kdyz bylo techto znaku vice za sebou, tak se prikaz ktery oddelovali, vykonal vicekrat.
+	- Opravena chyba v prikazu GET:. Kdyz prisel tesne po prikazu EN:, vratil server hodnotu z kache, ktera nebyla aktualni.
+
+---------------------------------------------------------------------------
+    Verze 4.0					Zkompilovano 20.01.2016
+---------------------------------------------------------------------------
+
+	- Vyrazne zrychleni odpovedi v projektech s tisici promennymi (prikazy LIST:, GET:, DIFF:).
+	- Osetrena chyba EPSNETU (Chybne parametry komunikacni sluzby). Nastava napr. pri prekroceni adresniho rozsahu centraly.
+	- Kvuli kompatibilite se nepouziva adresar se jmenem sekce, je-li promenna PUBFILE_WRITE nastavena na 'No' nebo chybi.
+	- Pridan parametr EPSPORT pro zmenu komunikacniho portu protokolu EPSNET. Uzitecne pro pripojeni na TECOROUTE. Hodnotu lze menit i prikazem SETCONF:.
+	- Pridan parametr EPSTOUT pro nastaveni timeoutu a EPSTOUT_STEP pro prirustek timeoutu v EPSNET komunikaci. Problem s TECO Routerem. Vypadava spojeni.
+
+	- Opravena chyba, kdy se poriodicky stahoval PUB soubor. Problem nastaval po startu serveru, kdyz nebylo spojeni s PLC. Po navazani spojeni
+	  bylo vyhodnoceno nove CRC a PUB soubor se zacal periodicky stahovat.
+	- Opravena chyba pri praci s velkymi PUB soubory. V prikazech LIST: a GET: dochazelo k padu serveru.
+	- Opravena chyba ve funkci ReadPubFile(). Funkce obcas hlasila chybu registru, protoze pri parsovani posledni polozky doslo k preteceni pointeru.
+	- Opravena chyba vytvareni adresare sekce. Adresar se vytvarel, i kdyz byla promenna PUBFILE_WRITE nastavena na No.
+	- Opravena chyba promenne EPSADDR. Bylo mozne nastavit hodnotu 0 - 127. Platny rozsah je 1 - 126.
+	- Opravena chyba zarovnani pameti na ARM procesorech (ID-31/32) ve strukture FFILE. V kernelu je kvuly SoftPLC vypnut softwarovy handler vyjimek.
+	  System aplikaci ukoncil s chybou "Buss error".
+	- Opravena chyba jmena PUBLIC souboru. Jmeno se nepravadi na velka pismena.
+	- Opravena chyba v prikazech GETMEM: a GETFILE:. Pri DOSovem ukoncovani radku se nepouzil znak '\n' ale pouze '\r'.
+	  Na ID-XY se nadale posila pouze znak '\r'.
+
+---------------------------------------------------------------------------
+    Verze 3.9					Zkompilovano 05.12.2014
+---------------------------------------------------------------------------
+
+	- Neni-li mozne ziskat data z PLC, tak se resi pouze klientske dotazy a navazuje se spojeni s PLC.
+	- Prace s lokalnimi soubory je upravena tak, ze kazdy thread ma vlasni soubory.
+                 Napr.: Foxtrot/PLCComS.crc
+                        Foxtrot/www/webmaker.pub
+	- Rozsireny prikazy EN: a DI: tak, ze je mozne zadat odchylku 'delta', pri jejimz prekroceni se generuje DIFF: zprava.
+          Odchylka je kladne cislo a muze byt i cislo realne. Vychozi hodnota bude 0.
+                Napr: EN: TEPLOTA_1 0.5 - nastavi odchylku delta na 0.5 (Zmena o pul stupne)
+            	      EN: TEPLOTA_* 2   - nastavi odchylku delta na 2 u vsech promennych TEPLOTA_
+	- Promenna NUM_OF_DECIMALS z INI souboru muze byt i 0. Pak se uplne zahodi desetinna cast.
+	- Prime adresovani v prikazech SET:,GET: a GETMEM: nebude pouze na panelu ID-XY.
+	- Prikazy GETFILE: a GETFILEINFO: pracuji s lokalnimy adresari.
+
+	- Opravena chyba dvojiho ulozeni PUBLIC souboru. Jmeno PUBLIC souboru se prevadi na velka pismena.
+	- Opravena chyba chyba v EPSNET komunikaci, pri zizkavani promennych. Vypadavolo spojeni s PLC.
+	- Opravena chyba nedostatku pameti. Nove centraly maji vetsi pamet. Pamet pro registry R zvetsena z 64KB na 512KB.
+	- Opraveny drobne chyby v chybovych zpravach.
+
+---------------------------------------------------------------------------
+    Verze 3.8					Zkompilovano 16.09.2014
+---------------------------------------------------------------------------
+
+	- Do sekce PLC pridana promenna EPSADDR, kterou se nastavi zdrojova adresa pro EPSNET. To resi problem vice serveru pripojenych k jednomu PLC.
+	- Pridano nastaveni promenne EPSADDR do prikazu SETCONF:.
+	- Prikazy GET: a SET: mohou pracovat se zakazanymi promennymi. Tykat se pouze panelu ID-XY.
+	- Pridano prime adresovani do prikazu SET:,GET: a GETMEM:. Tyka se pouze panelu ID-XY.
+
+	- Opravena chyba pri zmene PUBLIC souboru. Kdyz se PUBLIC soubor nelisi od aktualniho, tak je generovana zprava cislo 251.
+	- Opravena chyba pri zmene PUBLIC souboru. Neni-li soubor nalezen, tak se puvodni zahodi a clientovi se posila chybova zprava.
+	- Opravena chyba v knihovne 'libepsnet.a' v seriove komunikaci. Pri velikosti paketu nad 250B doslo k zamrznuti vysilani.
+
+---------------------------------------------------------------------------
+    Verze 3.7					Zkompilovano 31.07.2014
+---------------------------------------------------------------------------
+
+	- Opravena chyba v nastaveni mezni doby cyklu. Mezni hodnota nebyla prevedena na microsekundy.
+
+---------------------------------------------------------------------------
+    Verze 3.6					Zkompilovano 29.07.2014
+---------------------------------------------------------------------------
+
+        - Pridana real-time priorita.
+	- Do knihovny 'libepsnet.a' pridana prodleva 1ms pro RTS. Jinak se RTS nekdy nestihlo.
+        - Je-li cas hlavni smicky vetsi jak pozadovana hodnota, tak se jako cas zpozdeni nastavi prave tato hodnota a ne 1s.
+        - Pridano prime adresovani do prikazu SET:,GET: a GETMEM:.
+
+        - Opravena chyba, kdy se pri zmene projektu neulozilo nove CRC a proto se do nekonecna nacital PUB soubor.
+
+---------------------------------------------------------------------------
+    Verze 3.5					Zkompilovano 02.07.2014
+---------------------------------------------------------------------------
+
+	- Prodlouzena doba timeoutu ze 750ms na 950ms v 'libepsnet.a'.
+
+	- Opravena chyba pri nacitani PUBLIC souboru. Nyni se nacte, jen kdyz se lisi od aktualniho.
+	- Opravena chyba, kdy pri pripojeni vice klientu dochazelo k ukonceni aplikace. Problem byl v obsluze pripojeni, kde se necekalo na nacteni PUB souboru.
+
+---------------------------------------------------------------------------
+    Verze 3.4					Zkompilovano 11.06.2014
+---------------------------------------------------------------------------
+
+	- Pridana moznost vypnuti souborove cache promennou FFILE_MAXRECS nastavenim na 0. Tim se soubory stahuji rovnou a odpadji tak dotazi na informace o souboru.
+	- Zkracena prodleva pri stahovanim souboru na pozadi ze 100 na 10 ms.
+	- Zkracena prodleva po ukonceni prijmu dat na seriove lince v 'libepsnet.a'. Konec zpravy se hlida znakem ED na jejim konci. Nedochazi tak ke zpozdeni 250ms.
+	- Promenne typu STRING se porovnavaji jako textovy retezec a ne jako blok pameti. Pri prekryti promennych nechodi zbytecne DIFF: zpravy.
+
+	- Opravena chyba v seriove komunikaci pri stahovani souboru. Pri velkych prodlevach SD karty dochazelo k padu aplikace.
+	- Opravena chyba cteni lokalniho souboru. Pri chybe se vraci -1 a ne 0.
+	- Opravena chyba pri stahovani velkeho mnozstvi souboru. Zhruba po 250 souborech se nepovedlo vytvorit thread a soubor jiz nesel stahnout.
+	- Opravena chyba v prikazu EN: u PUB souboru, ve kterych se prekryvaji promenne. Dochazelo k nekonecne alokaci pameti.
+
+---------------------------------------------------------------------------
+    Verze 3.3					Zkompilovano 13.05.2014
+---------------------------------------------------------------------------
+
+	- Pridana promenna SYNC_VAR_ENABLED do INI souboru pro povoleni nebo zakazani synchronizace promennych s PLC behem stahovani souboru.
+	  Zakazanim synchronizace se stahovani souboru vyrazne zrychli.
+
+---------------------------------------------------------------------------
+    Verze 3.2					Zkompilovano 30.04.2014
+---------------------------------------------------------------------------
+
+	- Pridana komunikace po seriove lince pro protokol EPSNET.
+	- Data se nyni protokolem EPSNET stahuji v blocich o velikosti 1230B a ne 246B. Zrychleni je zhruba 5x.
+	- Pridan prikaz GETMEM pro stahovani bloku pameti. Data se posilaji stejne jako u souboru.
+	- Zvetsen maximalni pocet sitovych TCP spojeni z 32 na 1024 a vychozi pocet spojeni ze 4 na 10.
+
+	- Opravena chyba pri posilani chybove zpravy cislo 41. Pri zmene PUB soubor se chybova zprava posilala pouze jednomu klientovi.
+	- Opravena chyba, kdy pri zmene casu v systemu doslo k prodlouzeni doby cyklu hlavni smycky na nekolik desitek sekund.
+	- Opravena chyba ve hvezdickove konvenci. Dotaz na promennou obcas skoncil chybou. Ve funkci strmcmp() nebylo vynulovane pole.
+	- Opravena chyba v nastaveni meznich velikosti nekterych promennych.
+
+---------------------------------------------------------------------------
+    Verze 3.1					Zkompilovano 27.08.2013
+---------------------------------------------------------------------------
+
+	- Pridana promenna NUM_OF_DECIMALS do INI souboru pro zobrazeni realnych cisel na urcity pocet desetinnych mist.
+	- Pridana promenna LIM_OF_DECIMALS do INI souboru pro omezeni zasilani zprav DIFF: v pripade, ze se ralna cisla na danem poctu desetinnych mist lisi.
+	- Pridana promenna SCIENT_NOTATION do INI souboru pro zobrazeni realnych cisel ve vedeckem formatu [-]d.ddd e[+/-]ddd.
+
+	- Opravena chyba v datovem typu 'int' v modulu EPSNET. Nebylo mozne stahovani souboru na 64b platforme.
+
+---------------------------------------------------------------------------
+    Verze 3.0					Zkompilovano 04.03.2013
+---------------------------------------------------------------------------
+
+	- Pridana moznost nastaveni BOOL promennych na hodnoty TRUE (1) nebo FALSE (0).
+
+	- Opravena chyba napojeni na SoftPLC pres sdileny modul. Nyni je mozne pouzit novou verzi modulu.
+
+---------------------------------------------------------------------------
+    Verze 2.9					Zkompilovano 23.08.2012
+---------------------------------------------------------------------------
+
+	- Pri prechodu centraly z HALT do RUN se provede reinicializace spojeni. Tim se vicisti struktury pro EPSNET.
+
+	- Opravena chyba ve stahovani souboru z centraly. Nektere soubory se nekdy nepodarilo stahnout.
+
+---------------------------------------------------------------------------
+    Verze 2.8					Zkompilovano 18.04.2012
+---------------------------------------------------------------------------
+
+     	- Soubory se nyni protokolem EPSNET stahuji v blocich o velikosti 1150B a ne 220B. Zrychleni je zhruba 5x.
+	- Pri stahovani souboru se data prubezne posilaji klientovi. U stahovani velkych souboru se zdalo, ze server nereaguje.
+
+	- Opravena chyba ve zpracovani promennych typu REAL. Pokud mela hodnota prilis mnoho cifer, tak dochazelo k preteceni pole a k padu serveru.
+	- Opravena chyba v praci s retezci. Obsah retezce se nesmi konvertovat na velka pismena.
+	- Opravena chyba ve hvezdickove konvenci. Filtrovani seznamu se chovalo, jako by vzdy byla zadana prvni hvezda.
+	  Napr.: LIST:BTN se chova stejne jako LIST:*BTN
+
+---------------------------------------------------------------------------
+    Verze 2.7					Zkompilovano 18.10.2011
+---------------------------------------------------------------------------
+
+	- Pridana promena DIFF_VAR_DISABLED do konfiguracniho INI souboru pro potlaceni DIFF: hlaseni.
+	- Rozsirena hvezdickova konvence na libovolny pocet hvezdicek.
+
+	- Opravena chyba v prikazu SETCONF:. Nastaveni promenne CRLF slo jen jednou.
+
+---------------------------------------------------------------------------
+    Verze 2.6					Zkompilovano 29.08.2011
+---------------------------------------------------------------------------
+
+	- Opravena chyba v prikazu DI:. Jsou-li promenne globalne povoleny, pak je muze pripojeny klient vsem ostatnim zakazat.
+
+---------------------------------------------------------------------------
+    Verze 2.5					Zkompilovano 16.08.2011
+---------------------------------------------------------------------------
+
+	- Pridano logovani promennych, ktere nebyly nalezeny v konfiguracnim INI souboru.
+
+	- Opravena chyba v zakazovani/povolovani promennych. Jmena promennych se nekonvertovala na velka pismena.
+	- Opravena chyba ve funkci getdifftime(). Funkce spatne vracela cas pro dobu delsi jak 1s.
+	- Opravena chyba v casove korekci hlavni smycky. Cas je nyni zadan promennou comm_loop_delay a ne napevno konstantou WAIT_100MS.
+
+---------------------------------------------------------------------------
+    Verze 2.4					Zkompilovano 09.06.2011
+---------------------------------------------------------------------------
+
+	- Pridana promenna COMM_LOOP_DELAY do INI souboru pro nastaveni zpozdeni hlavni smycky.
+
+	- Opravena chyba ve zpracovani promenych. Zpracovavali se pouze promenne z PUB souboru, ktere neobsahovali mala pismena.
+
+---------------------------------------------------------------------------
+    Verze 2.3					Zkompilovano 01.04.2011
+---------------------------------------------------------------------------
+
+	- Opravena chyba v dotazovani na konkretni promennou. Nerozlisovali se velka a mala pismena.
+	- Opravena chyba v optimalizaci promennych. Z komunikacniho seznamu vypadavali nektere promenne.
+	- Opravena chyba v pripojeni vice klientu. Klienti se navzajem ovlivnovali.
+	- Opravena chyba v nastaveni vychoziho stavu promennych pri prihlaseni klienta. Klient nemel nastaven globalni status z INI souboru.
+
+---------------------------------------------------------------------------
+    Verze 2.2					Zkompilovano 16.02.2011
+---------------------------------------------------------------------------
+
+	- U prikazu EN a DI se povoluje jen to co je zakazane nebo zakazuje to co je povolene.
+	- PUB soubory se zpracovavaji pomoci 'map' objektu z STL. Jedna se o binarni strom, ktery je mnohem rychlejsi nez spojovy seznam.
+
+	- Opravena chyba ve zpracovani fixniho PUB souboru. Nekontrolovala se pritomnost dulezitych promennych, napr.: __PF_CRC
+	- Opravena chyba ve zpracovani fixniho PUB souboru. Neexistuje-li tento soubor, pak server neni mozne ukocit.
+
+---------------------------------------------------------------------------
+    Verze 2.1					Zkompilovano 31.08.2010
+---------------------------------------------------------------------------
+
+	- Zmena nazvu promennych ve fixnim PUB souboru na __PLC_RUN a __PF_CRC.
+	- Zvetseni souborove kese na 256. Maximum je 1024 souboru.
+	- Napojeni na SoftPLC pres sdileny modul.
+
+	- Opravena chyba v reseni duplicity jmen promennych v PUB souborech. Dochazelo k vyrazeni fixni promenne.
+	- Opravena chyba ve cteni PUB souboru. Soubor se nenacte, obsahuje-li komentare oddelene prazdnymi radky uprostred souboru.
+	- Opravena chyba pri ukonceni serveru. Neceka se na ukonceni vlakna 'ThreadCommObject' v pripade, ze je jedine.
+	- Opravena chyba neopravneneho pristupu do pameti. Dochazelo k ni pri praci se souborovou kesi.
+	- Opravena vychozi velikost retezce. Kdyz neni zadana, je treba ji nastavit na 80 znaku a ne na 32.
+
+---------------------------------------------------------------------------
+    Verze 2.0					Zkompilovano 09.06.2010
+---------------------------------------------------------------------------
+
+	- Pridana promenna PF_VAR_DISABLED do INI souboru pro vychozi povoleni nebo zakazani vsech promennych. Doted byl vychozi stav, povoleni promennych.
+
+---------------------------------------------------------------------------
+    Verze 1.9					Zkompilovano 02.06.2010
+---------------------------------------------------------------------------
+
+	- Opravena chyba ve zpracovani fixnich promennych. Neposilal se DIFF pri zmene.
+
+---------------------------------------------------------------------------
+    Verze 1.8					Zkompilovano 17.05.2010
+---------------------------------------------------------------------------
+
+	- Zrychleni hlavni smycky pridanim indexu do tabulek. Prohledavani tabulek je mnohem rychlejsi :)
+
+	- Opravena chyba pri praci s hvezdickovou konvenci.
+	- Opravena chyba pri pripojeni vice klientu. Klienti se jiz neovlivnuji prikazy EN a DI. Kazdy klient ma svou kopii PUB tabulky.
+	- Opravena chyba v casovani hlavni smycky. Prodleva v hlavni smycce je dynamicka.
+
+---------------------------------------------------------------------------
+    Verze 1.7					Zkompilovano 13.04.2010
+---------------------------------------------------------------------------
+
+        - Pridano presnejsi (us) casove rozliseni do zaznamu logu.
+        - Pridan WIN32 port pomoci MINGW toolchain.
+        - Pridana podpora Windowsovskych terminalu. Promenna 'END_LINE_CRLF'.
+        - Zmena promenne 'PORT' na 'SERVER_PORT' v konfiguracnim souboru.
+
+        - Opravena chyba v souborovych operacich. Kazdy soubor se otvira pouze jednou.
+
+---------------------------------------------------------------------------
+    Verze 1.6					Zkompilovano 15.01.2010
+---------------------------------------------------------------------------
+
+	- Opravena chyba pri praci se znamenkovimi hodnotami v GCC na ARM architekture.
+	  Kazdy datovy typ je standartne neznamenkovy, takze je treba pred neho napsat 'signed'.
+	- Opravena chyba prikazu 'EN:'. Prikaz puze zakaze promenne.
+
+---------------------------------------------------------------------------
+    Verze 1.5					Zkompilovano 26.11.2009
+---------------------------------------------------------------------------
+
+	- Rozsireni souborovych sluzeb pro EPSNET knihovnu. PUB soubor muze byt ulozen v podadresari
+	  a je mozne ziskat atributy a cas jeho vytvoreni, zmeny atd.
+	- Pridan prikaz 'GETFILEINFO', ktery zobrazuje informace o souboru.
+
+	    Dotaz:   "GETFILEINFO:jmeno_souboru\n"
+	    Odpoved: "GETFILEINFO:jmeno_souboru[delka bloku]=velikost atributy cas_vytvoreni cas_zmeny\n"
+
+	- Pridana promenna 'PUBFILE_FIXED' do INI souboru, ktera je nastavena na PUB soubor s promennymy,
+	  ktere jsou nutne pro chod serveru atd. Na tyto promenne se nevztahuji prikazy 'EN:' a 'DI:'.
+	- Pridana reakce na zmenu PUB souboru. Ze je zmena rika registr S70 v PLC. V nem je hodnota CRC public souboru.
+	- Pridan prikaz 'GETFILE:' pro posilani souboru.
+
+	    Dotaz:   "GETFILE:jmeno_souboru\n"
+	    Odpoved: "GETFILE:jmeno_souboru[1024]=blok dat dlouhy 1024B\n"
+			...
+	    "GETFILE:jmeno_souboru[0]=\n"
+
+	- Prikaz 'LIST:' zobrazuje priznak '*' u zablokovanych promennych.
+
+	    Dotaz:   "LIST:\n"
+	    Odpoved: "LIST:svetlo_kuchyn,BOOL*\n"	- Zakazana promenna prikazem "DI:svetlo_kuchyn\n"
+		     "LIST:svetlo_obyvak,BOOL\n"
+			...
+		     "LIST:\n"
+
+	- Pridan prikaz 'SETCONF:' ktery umoznuje on-line zmenu nekterych promennych.
+
+	    Dotaz:   "SETCONF:ipaddr,<IP adresa PLC>\n"
+	    Dotaz:   "SETCONF:pubfile,<jmeno souboru>\n"
+
+	- Pridano povoleni nebo zakazani vsech promennych prikazy 'EN:' a 'DI:'.
+
+	    Pri dotazu 'EN:promenna' je odpovedi hodnota promenne. Stejne jako u dotazu 'GET:promenna'.
+	    Samotny 'EN:' posle hodnoty vsech promennych stejne jako pri hromadnem 'GET:'.
+
+	    Pri dotazu na zakazanou promenou je odpovedi napr.: "ERROR:33 Disabled register name: 'svetlo_kuchyn'".
+
+	- Za i pred prikazy (GET:, SET:, ...) mohou byt mezery.
+	- Prazdny prikaz 'GET:' vypise hodnoty vsech prommennych.
+
+	    Dotaz:   "GET:\n"
+	    Odpoved: "GET:svetlo_kuchyn,1\n"
+		     "GET:svetlo_obyvak,0\n"
+		        ...
+		     "GET:\n"
+
+	- Pridana kontrola CRC PUB souboru. Povoluje promenna 'PUBFILE_CRC' v INI souboru.
+	  Hodnota CRC je na poslednim radku PUB souboru za strednikem ukoncena CRLF: ;* Crc="xxxx"\r\n
+
+	- Opravena chyba pri otevirani portu po nekorektnim ukonceni serveru. Port nesel nejakou dobu otevrit.
+	  Na socketu staci nastavit 'SO_REUSEADDR' na 1 pomoci setsockopt().
+
+---------------------------------------------------------------------------
+    Verze 1.4					Zkompilovano 10.08.2009
+---------------------------------------------------------------------------
+
+        - Nerozlisuje se typ konce radku. ('\r\n - DOS' nebo '\n - UNIX')
+        - Pridany souborove operace do EPSNET knihovny. PUB soubor se cte c PLC.
+
+---------------------------------------------------------------------------
+    Verze 1.3					Zkompilovano 24.06.2009
+---------------------------------------------------------------------------
+
+        - Zmena promennych typu 'REAL' a 'LREAL' se vyhodnocuje az od zmeny na tretim desetinnem miste.
+
+        - Opravena chyba pri nastavovani promenne typu 'BOOL' prikazem 'SET:'.
+
+---------------------------------------------------------------------------
+    Verze 1.2					Zkompilovano 01.06.2009
+---------------------------------------------------------------------------
+
+        - Konec vypisu prikazu 'LIST:' konci 'LIST:\n'.
+        - Pridano posilani chybovych zprav. Posila se pri rozpadlem spojeni, nebo kdyz se neco nepovede.
+
+	    Format zpravy je: ERROR:cislo<mezera>anglicky text chyby
+
+        - Pridana podpora logickeho adresovani do EPSNET knihovny.
+        - Na prikaz 'SET:' je odpovedi 'DIFF:'. Lze pouzit jako zpetnou vazbu o zmene stavu.
+        - Kazda odpoved zacina jmenem prikazu, ktery ji vyvolal.
+
+	    Např. na 'GET:yatun_light_chodba' přijde odpověd 'GET:yatun_light_chodba,1'.
+
+        - Opravena chyba v otevreni sitovych spojeni. Oteviraji se vsechny a ne pouze 'localhost'.
+        - Opravena chyba v posilani retezcu. Je zbytecne posilat ukoncovaci znak '\0x0'. Nedela dobre telnetu.
+
+---------------------------------------------------------------------------
+    Verze 1.0					Zkompilovano 23.04.2009
+---------------------------------------------------------------------------
+
+	- Uvodni verze.
