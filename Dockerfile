@@ -39,7 +39,7 @@ COPY etc/PLCComS.ini ${TECO_CONF_DIR}
 COPY etc/FIXED_Foxtrot.pub ${TECO_CONF_DIR}
 
 # Volume configuration
-VOLUME ["/var/log/teco", "/opt/teco"]
+VOLUME ["/var/log/teco", "/opt/teco/etc"]
 
 # Start PLCComS
 CMD ["./start.sh"]

@@ -35,8 +35,10 @@ case $ARCH in
 	       ;;
 esac
 
-TECO_LIB_DIR="$TECO_DIR/lib/$LIBDIR";
+TECO_LIB_DIR="$TECO_DIR/lib/$LIBSDIR";
 export LD_LIBRARY_PATH=$TECO_LIB_DIR
+echo "PLCComS LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 
 cd ${TECO_DIR}
+echo "PLCComS starting server..."
 exec ${TECO_DIR}/$PLCCOMS_BIN -d -c ${TECO_CONF_DIR}/PLCComS.ini -l ${TECO_LOG_DIR}/PLCComS.log
