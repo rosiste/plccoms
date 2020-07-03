@@ -39,4 +39,4 @@ TECO_LIB_DIR="$TECO_DIR/lib/$LIBDIR";
 export LD_LIBRARY_PATH=$TECO_LIB_DIR
 
 cd ${TECO_DIR}
-exec ${TECO_DIR}/bin/$PLCCOMS_BIN -d -c ${TECO_CONF_DIR}/PLCComS.ini -l ${TECO_LOG_DIR}/PLCComS.log
+exec ${TECO_DIR}/$PLCCOMS_BIN -d -c ${TECO_CONF_DIR}/PLCComS.ini -l ${TECO_LOG_DIR}/PLCComS.log
