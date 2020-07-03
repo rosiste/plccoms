@@ -42,6 +42,6 @@ COPY etc/FIXED_Foxtrot.pub ${TECO_CONF_DIR}
 VOLUME ["/var/log/teco", "/opt/teco/etc"]
 
 # Start PLCComS
-ENTRYPOINT ["/bin/sh", "-c", "/opt/teco/start.sh"]
+CMD ["/opt/teco/start.sh"]
 
 # EOF
