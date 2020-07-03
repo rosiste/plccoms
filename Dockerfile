@@ -10,6 +10,9 @@ ENV TECO_LOG_DIR /var/log/teco
 ENV TECO_CONF_FILE PLCComS.ini
 ENV TECO_LOG_FILE PLCComS.log
 
+# Set the working directory.
+WORKDIR ${TECO_DIR}
+
 # Create directory
 RUN mkdir -p ${TECO_DIR}
 RUN mkdir -p ${TECO_CONF_DIR}
@@ -22,6 +25,8 @@ RUN mkdir -p ${TECO_LIB_DIR}/lib_x86_64
 # Copy binary file
 COPY bin/* ${TECO_DIR}/
 RUN chmod 700 ${TECO_DIR}/PLCComS*
+COPY start.sh ${TECO_DIR}/start.sh
+RUN chmod 700 ${TECO_DIR}/start.sh
 
 # Copy lib file
 COPY lib/lib_rpi/libcrypto.so.1.0.0 ${TECO_LIB_DIR}/lib_rpi
@@ -37,7 +42,6 @@ COPY etc/FIXED_Foxtrot.pub ${TECO_CONF_DIR}
 VOLUME ["/var/log/teco", "/opt/teco"]
 
 # Start PLCComS
-COPY start.sh ${TECO_DIR}/start.sh
-CMD ["${TECO_DIR}/start.sh"]
+CMD ["./start.sh"]
 
 # EOF
