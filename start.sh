@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Satrt.sh
 #
@@ -41,4 +41,19 @@ echo "PLCComS LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 
 cd ${TECO_DIR}
 echo "PLCComS starting server... ${TECO_DIR}/$PLCCOMS_BIN"
-${TECO_DIR}/$PLCCOMS_BIN -d -c ${TECO_CONF_DIR}/PLCComS.ini -l ${TECO_LOG_DIR}/PLCComS.log
+./$PLCCOMS_BIN -d -c ${TECO_CONF_DIR}/PLCComS.ini -l ${TECO_LOG_DIR}/PLCComS.log
+status=$?
+
+if [ $status -ne 0 ]; then
+  echo "Failed to start $PLCCOMS_BIN: $status"
+  exit $status
+fi
+
+while sleep 60; do
+  ps aux | grep $PLCCOMS_BIN | grep -q -v grep
+  PROCESS_STATUS=$?
+  if [ $PROCESS_STATUS -ne 0 ]; then
+    echo "$PLCCOMS_BIN has already exited."
+    exit 1
+  fi
+done
