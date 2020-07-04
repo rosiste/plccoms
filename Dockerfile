@@ -22,6 +22,9 @@ RUN mkdir -p ${TECO_LIB_DIR}/lib_rpi2
 RUN mkdir -p ${TECO_LIB_DIR}/lib_x86
 RUN mkdir -p ${TECO_LIB_DIR}/lib_x86_64
 
+# Install utils
+RUN apt-get update && apt-get install -y procps
+
 # Copy binary file
 COPY bin/* ${TECO_DIR}/
 RUN chmod 700 ${TECO_DIR}/PLCComS*
