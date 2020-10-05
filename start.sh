@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-# Satrt.sh
+# Start.sh
 #
 # Copyright Jaroslav Vacha
-# 2020/07/03 Jaroslav Vacha <rosiste@gmal.com>
+# 2020/10/05 Jaroslav Vacha <rosiste@gmal.com>
 #
 
 ARCH=`uname -m`

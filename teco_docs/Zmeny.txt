@@ -5,6 +5,21 @@
 
 
 ---------------------------------------------------------------------------
+    Verze 5.5					Zkompilovano 09.09.2020
+---------------------------------------------------------------------------
+
+	- Zarovnani IP adres v prikazu GETINFO:.
+	- Pokud je vstupni buffer preplnen, je to sdeleno klientovi.
+	- Podrobnejsi chybove zpravy v klientskych opovedich.
+
+	- Opravena chyba. Pri odpojeni posledniho klienta se stav promennych nastavi do vychoziho stavu.
+	- Opravena chyba EPSNET komunikace. Komunikace je zhruba 5x rychlejsi.
+	- Opravena chyba. Pokud pri komunikaci s PLC doslo k chybe, nebylo mozne prikazem DI: promenne zakazat.
+	- Opraveno preskoceni telnet negotiation. Mohlo zpusobit SIGSEGV.
+	- Opraveno generovani zpravy DIFF: u zakazanych promennych. Hodnoty se porovnavaji binarne a ne textove. Pridano logovani.
+	- Opravena chybu pri stahovani souboru. Pri chybe se neuzavrel soubor.
+
+---------------------------------------------------------------------------
     Verze 5.4					Zkompilovano 30.04.2020
 ---------------------------------------------------------------------------
 
