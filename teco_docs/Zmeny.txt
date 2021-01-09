@@ -5,6 +5,28 @@
 
 
 ---------------------------------------------------------------------------
+    Verze 5.7					Zkompilovano 15.12.2020
+---------------------------------------------------------------------------
+
+	- Opravena chyba na EPSNET komunikaci. Chybne se skladali EPNET frame do jednoho paketu. Centrala pak vracela chybnou velikost dat.
+
+---------------------------------------------------------------------------
+    Verze 5.6					Zkompilovano 27.10.2020
+---------------------------------------------------------------------------
+
+	- Pridana jmena threadu:
+
+	    Jmeno sekce - Hlavni smycka (COMM objekt)
+	    MEM		- Prace s pameti
+	    FFG		- Get file
+	    FFW		- Write file
+
+	- Opravena chyba neuvolnovani pameti v prikazu GETMEM:
+	- Opravena chyba v prikazu GETMEM:. Prikaz obcas zpusobil vyjimku SEGV.
+	- Opravena chyba testu velikosti zpravy v prikazu READN v 'libepsnet.a'. Je-li promennych mnoho, tak se spatne skladaji EPSNET frame
+	  a centrala neodpovi na dotaz.
+
+---------------------------------------------------------------------------
     Verze 5.5					Zkompilovano 09.09.2020
 ---------------------------------------------------------------------------
 
