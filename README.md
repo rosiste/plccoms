@@ -6,7 +6,6 @@ Architectures officially supported by this Docker container:
 ![Linux x86-64](https://img.shields.io/badge/linux/amd64-yellowgreen)
 ![ARMv8 64-bit](https://img.shields.io/badge/linux/arm64-yellowgreen)
 ![ARMv7 32-bit](https://img.shields.io/badge/linux/arm/v7-yellowgreen)
-![ARMv6 32-bit](https://img.shields.io/badge/linux/arm/v6-yellowgreen)
 
 ## PLCComS
 ![GitHub last commit](https://img.shields.io/github/last-commit/rosiste/plccoms)
@@ -26,7 +25,7 @@ Communication server provide TCP/IP connection with client device and a PLC. Com
 
 ```
 # pull from docker hub
-$> docker pull rosiste/plccoms
+$> docker pull rosiste/plccoms:latest
 
 # run ntp
 $> docker run --name=plccoms            \
