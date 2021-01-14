@@ -6,8 +6,10 @@
 # 2021/01/14 Jaroslav Vacha <rosiste@gmal.com>
 #
 
+echo "$(date) - ** Dockerized PLCComS - Communication server for TECO PLC (Foxtrot, TC700 and SoftPLC) **"
+
 ARCH=`uname -m`
-echo "PLCComS arch: $ARCH"
+echo "$(date) - PLCComS arch: $ARCH"
 
 export MALLOC_CHECK_=4
 TECO_DIR="/opt/teco";
@@ -18,7 +20,7 @@ TECO_LOG="/var/log/teco/PLCComS.log";
 touch ${TECO_LOG}
 
 # echo the timezone
-echo "Timezone set to $TZ"
+echo "$(date) - Timezone set to $TZ"
 
 # use it for script logging as well as for PLCcomS
 #exec >> $TECO_LOG
@@ -45,15 +47,15 @@ case $ARCH in
 	       ;;
 esac
 
-echo "PLCComS binary file based on platform is $PLCCOMS_BIN"
+echo "$(date) - PLCComS binary file based on platform is set to $PLCCOMS_BIN"
 
 TECO_LIB_DIR="$TECO_DIR/lib/$LIBSDIR";
 export LD_LIBRARY_PATH=$TECO_LIB_DIR
-echo "PLCComS LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+echo "$(date) - PLCComS LD_LIBRARY_PATH is set to $LD_LIBRARY_PATH"
 
 
 # log the event
-echo "$TECO_DIR/$PLCCOMS_BIN launching at $(date)"
+echo "$(date) - launching PLCComS binary from $TECO_DIR/$PLCCOMS_BIN"
 
 # launch (do NOT use the "-d" flag)
 exec "$TECO_DIR/$PLCCOMS_BIN" \
