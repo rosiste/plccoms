@@ -21,4 +21,4 @@ jobs:
         run: |
           docker buildx build --push \
             --tag rosiste/plccoms:latest \
-            --platform linux/amd64,linux/arm64 .
+            --platform linux/386,linux/arm,linux/amd64,linux/arm64 .
