@@ -2,6 +2,9 @@
 FROM debian
 LABEL maintainer "Jaroslav Vacha <rosiste@gmail.com>"
 
+# Define the ports the container will listen on
+EXPOSE 5010
+
 # Define the ENV variable
 ENV TECO_DIR /opt/teco
 ENV TECO_CONF_DIR /opt/teco/etc
@@ -9,6 +12,7 @@ ENV TECO_LIB_DIR /opt/teco/lib
 ENV TECO_LOG_DIR /var/log/teco
 ENV TECO_CONF_FILE PLCComS.ini
 ENV TECO_LOG_FILE PLCComS.log
+ENV TZ=Europe/Prague
 
 # Set the working directory.
 WORKDIR ${TECO_DIR}
@@ -23,7 +27,7 @@ RUN mkdir -p ${TECO_LIB_DIR}/lib_x86
 RUN mkdir -p ${TECO_LIB_DIR}/lib_x86_64
 
 # Install utils
-RUN apt-get update && apt-get install -y procps
+RUN apt update && apt upgrade -y && apt install -y ntp && apt install -y tzdata
 
 # Copy binary file
 COPY bin/* ${TECO_DIR}/
