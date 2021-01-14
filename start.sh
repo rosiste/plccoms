@@ -21,8 +21,8 @@ touch ${TECO_LOG}
 echo "Timezone set to $TZ"
 
 # use it for script logging as well as for PLCcomS
-exec >> $TECO_LOG
-exec 2>> $TECO_LOG
+#exec >> $TECO_LOG
+#exec 2>> $TECO_LOG
 
 case $ARCH in
     i586|i686) PLCCOMS_BIN="PLCComS"
