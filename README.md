@@ -3,7 +3,7 @@
 Architectures officially supported by this Docker container:
 
 ![Linux x86-64](https://img.shields.io/badge/linux/amd64-yellowgreen)
-[ARMv8 64-bit](https://img.shields.io/badge/linux/arm64-yellowgreen)
+![ARMv8 64-bit](https://img.shields.io/badge/linux/arm64-yellowgreen)
 
 ## PLCComS
 ![GitHub last commit](https://img.shields.io/github/last-commit/rosiste/plccoms)
