@@ -45,6 +45,8 @@ case $ARCH in
 	       ;;
 esac
 
+echo "PLCComS binary file based on platform is $PLCCOMS_BIN"
+
 TECO_LIB_DIR="$TECO_DIR/lib/$LIBSDIR";
 export LD_LIBRARY_PATH=$TECO_LIB_DIR
 echo "PLCComS LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
