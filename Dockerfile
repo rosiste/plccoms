@@ -42,13 +42,13 @@ COPY lib/lib_x86/libcrypto.so.1.1 ${TECO_LIB_DIR}/lib_x86
 COPY lib/lib_x86_64/libcrypto.so.1.1 ${TECO_LIB_DIR}/lib_x86_64
 
 # Copy PLCComS configuration
-COPY etc/PLCComS.ini ${TECO_CONF_DIR}
+COPY etc/${TECHO_CONF_FILE} ${TECO_CONF_DIR}
 COPY etc/FIXED_Foxtrot.pub ${TECO_CONF_DIR}
 
 # Volume configuration
 VOLUME ["/var/log/teco", "/opt/teco/etc"]
 
 # Start PLCComS
-CMD ./start.sh
+ENTRYPOINT ["/opt/teco/start.sh"]
 
 # EOF

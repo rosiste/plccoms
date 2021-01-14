@@ -3,7 +3,7 @@
 # Start.sh
 #
 # Copyright Jaroslav Vacha
-# 2020/10/05 Jaroslav Vacha <rosiste@gmal.com>
+# 2021/01/14 Jaroslav Vacha <rosiste@gmal.com>
 #
 
 ARCH=`uname -m`
@@ -12,7 +12,17 @@ echo "PLCComS arch: $ARCH"
 export MALLOC_CHECK_=4
 TECO_DIR="/opt/teco";
 TECO_CONF_DIR="$TECO_DIR/etc";
-TECO_LOG_DIR="/var/log/teco";
+TECO_LOG="/var/log/teco/PLCComS.log";
+
+# create log file if not exists
+touch ${TECO_LOG}
+
+# echo the timezone
+echo "Timezone set to $TZ"
+
+# use it for script logging as well as for PLCcomS
+exec >> $TECO_LOG
+exec 2>> $TECO_LOG
 
 case $ARCH in
     i586|i686) PLCCOMS_BIN="PLCComS"
@@ -39,21 +49,11 @@ TECO_LIB_DIR="$TECO_DIR/lib/$LIBSDIR";
 export LD_LIBRARY_PATH=$TECO_LIB_DIR
 echo "PLCComS LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 
-cd ${TECO_DIR}
-echo "PLCComS starting server... ${TECO_DIR}/$PLCCOMS_BIN"
-./$PLCCOMS_BIN -d -c ${TECO_CONF_DIR}/PLCComS.ini -l ${TECO_LOG_DIR}/PLCComS.log
-status=$?
 
-if [ $status -ne 0 ]; then
-  echo "Failed to start $PLCCOMS_BIN: $status"
-  exit $status
-fi
+# log the event
+echo "$TECO_DIR/$PLCCOMS_BIN launching at $(date)"
 
-while sleep 60; do
-  ps aux | grep $PLCCOMS_BIN | grep -q -v grep
-  PROCESS_STATUS=$?
-  if [ $PROCESS_STATUS -ne 0 ]; then
-    echo "$PLCCOMS_BIN has already exited."
-    exit 1
-  fi
-done
+# launch (do NOT use the "-d" flag)
+exec "$TECO_DIR/$PLCCOMS_BIN" \
+    -c "$TECO_CONF_DIR/$TECO_CONF_FILE" \
+    -l "$TECO_LOG"
