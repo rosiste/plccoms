@@ -45,7 +45,7 @@ COPY lib/lib_x86_64/libcrypto.so.1.1 ${TECO_LIB_DIR}/lib_x86_64
 
 # Copy PLCComS default configuration
 COPY etc/${TECHO_CONF_FILE} ${TECO_DIR}/etc_defaults
-COPY etc/FIXED_Foxtrot.pub ${TECO_CONF_DIR}/etc_deafults
+COPY etc/FIXED_Foxtrot.pub ${TECO_CONF_DIR}/etc_defaults
 
 # Volume configuration
 VOLUME ["/var/log/teco", "/etc/teco"]
