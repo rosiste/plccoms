@@ -20,6 +20,7 @@ WORKDIR ${TECO_DIR}
 
 # Create directory
 RUN mkdir -p ${TECO_DIR}
+RUN mkdir -p ${TECO_DIR}/etc_defaults
 RUN mkdir -p ${TECO_CONF_DIR}
 RUN mkdir -p ${TECO_LOG_DIR}
 RUN mkdir -p ${TECO_LIB_DIR}/lib_rpi
@@ -42,9 +43,9 @@ COPY lib/lib_rpi2/libcrypto.so.1.0.0 ${TECO_LIB_DIR}/lib_rpi2
 COPY lib/lib_x86/libcrypto.so.1.1 ${TECO_LIB_DIR}/lib_x86
 COPY lib/lib_x86_64/libcrypto.so.1.1 ${TECO_LIB_DIR}/lib_x86_64
 
-# Copy PLCComS configuration
-#COPY etc/${TECHO_CONF_FILE} ${TECO_CONF_DIR}
-#COPY etc/FIXED_Foxtrot.pub ${TECO_CONF_DIR}
+# Copy PLCComS default configuration
+COPY etc/${TECHO_CONF_FILE} ${TECO_DIR}/etc_defaults
+COPY etc/FIXED_Foxtrot.pub ${TECO_CONF_DIR}/etc_deafults
 
 # Volume configuration
 VOLUME ["/var/log/teco", "/etc/teco"]

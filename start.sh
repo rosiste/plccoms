@@ -63,7 +63,7 @@ restoreConfigurationFile ()
    if [ ! -e "$TECO_CONF_DIR/$1" ] ; then
 
       echo "$(date) - $1 missing from $TECO_CONF_DIR - initialising default"
-      cp -a "$TECO_DIR/$1" "$TECO_CONF_DIR/$1"
+      cp -a "$TECO_DIR/etc_defaults/$1" "$TECO_CONF_DIR/$1"
 
    fi
 
