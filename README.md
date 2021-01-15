@@ -52,8 +52,11 @@ PUBFILE_WRITE = No
 PUBFILE_FIXED = ../../etc/teco/FIXED_Foxtrot.pub
 PUBFILE       = ../../etc/teco/inels.pub
 ```
-All file paths must be specified as relative form `/opt/teco`. The `inels.pub` file contains the export of variables from the PLC, for example from the IDM program.
+All file paths must be specified as relative from `/opt/teco`. The `inels.pub` file contains the export of variables from the PLC, for example from the IDM program.
 
 ## Author
 
 Jaroslav Vacha
+
+### Final thanks
+Big thanks to Phill Paraphraser for his ideas for improvement.
