@@ -4,7 +4,8 @@ plccoms:
     restart: unless-stopped
     ports:
       - "5010:5010"
+    environment:
+      - TZ=Europe/Prague
     volumes:
       - ./volumes/plccoms/log:/var/log/teco
       - ./volumes/plccoms/etc:/etc/teco
-      - /etc/timezone:/var/timezone:ro
