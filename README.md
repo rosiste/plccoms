@@ -38,10 +38,10 @@ $> docker run --name=plccoms            \
               rosiste/plccoms
 
 ```
-# Configuration
-When first started, the configuration file PLCComS.ini in volume /etc/tecofiles contain default values from Teco. Therefore, it is essential to adjust these values according to your environment. This is especially the ip address and port of the PLC and the location of *.pub files.
+## Configuration
+When first started, the configuration file `PLCComS.ini` in volume /etc/tecofiles contain default values from Teco. Therefore, it is essential to adjust these values according to your environment. This is especially the ip address and port of the PLC and the location of *.pub files.
 
-Example of PLCComs.ini when using deafult file locations
+Example of `PLCComS.ini` file when using default file locations. 
 ```
 [INELS]
 
@@ -52,6 +52,8 @@ PUBFILE_WRITE = No
 PUBFILE_FIXED = ../../etc/teco/FIXED_Foxtrot.pub
 PUBFILE       = ../../etc/teco/inels.pub
 ```
+All file paths must be specified as relative. The `inels.pub` file contains the export of variables from the PLC, for example from the IDM program.
+
 ## Author
 
 Jaroslav Vacha
