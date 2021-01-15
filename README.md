@@ -44,15 +44,14 @@ When first started, the configuration file `PLCComS.ini` in directory `/etc/teco
 Example of `PLCComS.ini` file when using default file locations:
 ```
 [INELS]
-
-IPADDR        = 10.3.1.40
+IPADDR        = 192.168.1.1
 SERVER_PORT   = 5010
 PUBFILE_CRC   = No
 PUBFILE_WRITE = No
 PUBFILE_FIXED = ../../etc/teco/FIXED_Foxtrot.pub
 PUBFILE       = ../../etc/teco/inels.pub
 ```
-All file paths must be specified as relative from `/opt/teco`. The `inels.pub` file contains the export of variables from the PLC, for example from the IDM program.
+All file paths must be specified as relative from `/opt/teco`. The `inels.pub` file contains the export of variables from the PLC, for example from the IDM software.
 
 ## Author
 
