@@ -39,7 +39,7 @@ $> docker run --name=plccoms            \
 
 ```
 ## Configuration
-When first started, the configuration file `PLCComS.ini` in volume /etc/tecofiles contain default values from Teco. Therefore, it is essential to adjust these values according to your environment. This is especially the ip address and port of the PLC and the location of *.pub files.
+When first started, the configuration file `PLCComS.ini` in directory `/etc/teco` contain default values from TECO. Therefore, it is essential to adjust these values according to your environment. This is especially the ip address and port of the PLC and the location of *.pub files.
 
 Example of `PLCComS.ini` file when using default file locations. 
 ```
