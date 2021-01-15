@@ -27,12 +27,14 @@ Communication server provide TCP/IP connection with client device and a PLC. Com
 # pull from docker hub
 $> docker pull rosiste/plccoms:latest
 
-# run ntp
+# run PLCComS container
 $> docker run --name=plccoms            \
-              --restart=always      \
-              --detach              \
-              --publish=5001:5001/tcp \
-              --e TZ=Europe/Prague    \
+              --restart=always          \
+              --detach                  \
+              --publish=5001:5001/tcp   \
+              -e TZ=Europe/Prague       \
+              -v log-vol:/var/log/teco  \
+              -v etc-vol:/etc/teco      \
               rosiste/plccoms
 
 ```
