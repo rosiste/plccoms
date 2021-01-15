@@ -31,7 +31,7 @@ $> docker pull rosiste/plccoms:latest
 $> docker run --name=plccoms            \
               --restart=always          \
               --detach                  \
-              --publish=5001:5001/tcp   \
+              --publish=5010:5010/tcp     \
               -e TZ=Europe/Prague       \
               -v plccoms_log:/var/log/teco  \
               -v plccoms_etc:/etc/teco      \
