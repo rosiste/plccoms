@@ -59,4 +59,4 @@ All file paths must be specified as relative from `/opt/teco`. The `inels.pub` f
 Jaroslav Vacha
 
 ### Final thanks
-Big thanks to Phill Paraphraser for his ideas for improvement.
+Big thanks to **[Phill Paraphraser](https://gist.github.com/Paraphraser)** for his ideas for improvement.
