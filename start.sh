@@ -6,6 +6,7 @@
 # 2021/01/15 Jaroslav Vacha <rosiste@gmal.com>
 #
 echo "$(date) - ** Dockerized PLCComS - Communication server for TECO PLC (Foxtrot, TC700 and SoftPLC) **"
+export MALLOC_CHECK_=4
 
 # define the path to the log file
 TECO_LOG="$TECO_LOG_DIR/$TECO_LOG_FILE"
@@ -17,10 +18,8 @@ touch ${TECO_LOG}
 ARCH=`uname -m`
 echo "$(date) - PLCComS arch: $ARCH"
 
-export MALLOC_CHECK_=4
-#TECO_DIR="/opt/teco";
-#TECO_CONF_DIR="$TECO_DIR/etc";
-#TECO_LOG=$TECO_LOG_DIR/$TECO_LOG_FILE;
+# echo the PLCComS ini file path
+echo "$(date) - PLCComS ini file is set to $TECO_CONF_DIR/$TECO_CONF_FILE"
 
 # echo the timezone
 echo "$(date) - Timezone set to $TZ"
