@@ -1,6 +1,6 @@
 plccoms:
     container_name: plccoms
-    build: ./services/plccoms/.
+    image: rosiste/plccoms:latest
     restart: unless-stopped
     ports:
       - "5010:5010"
