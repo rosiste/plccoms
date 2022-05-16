@@ -14,7 +14,7 @@ Architectures officially supported by this Docker container:
 Dockerized PLCComS - Communication server for TECO PLC (Foxtrot, TC700 and SoftPLC)
 
 ## Function
-Communication server provide TCP/IP connection with client device and a PLC. Communication of server with client is created by simple text oriented protocol - question/answer. Server communicates with PLS by optimalized EPSNET protocol.
+Communication server provides TCP/IP connection with client device and a PLC. Communication of server with client is created by simple text oriented protocol - question/answer. Server communicates with PLS by optimalized EPSNET protocol.
 
 - **[PLCComS (SW) EN](https://www.tecomat.com/download/software-and-firmware/plccoms/)** - PLCComS - Communication server
 - **[PLCComS (SW) CZ](https://www.tecomat.cz/ke-stazeni/software/plccoms/)** - PLCComS - komunikacni server
