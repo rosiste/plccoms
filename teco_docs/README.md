@@ -39,7 +39,7 @@ Is simple text oriented protocol. Every line is ended new line character (DOS [\
 		GETINFO:[name]\n								- Get informations about communication server.
 			name:
 				version					- Version of the communication server.
-				epsnet_version			- Version of EPSNET library.
+				version_epsnet			- Version of EPSNET library.
 				version_ini				- Version of INI parsing library.
 				version_plc				- PLC version.
 				ipaddr					- IP address of PLC.
@@ -58,7 +58,7 @@ Is simple text oriented protocol. Every line is ended new line character (DOS [\
 				pubfile					- Public file.
 				crlf					- End line character (yes = DOS [\r\n], no = UNIX [\n]).
 				diff					- Enable or disable sending DIFF messages (yes = Enabled).
-
+ variables (yes = Enabled).
 		HELP:\n                         - Display help message.
 
 	Answers for commands:
@@ -93,13 +93,13 @@ Is simple text oriented protocol. Every line is ended new line character (DOS [\
 		GETFILEINFO://www/LOGIN.XML[36]=195 32 59391128503405 59391128503405\n
 
 		GETINFO:\n
-		GETINFO:VERSION,Ver 5.1 Oct 18 2019 11:21:30
-		GETINFO:VERSION_EPSNET,Ver 2.9 Oct 18 2019 11:21:28
-		GETINFO:VERSION_INI,Ver 3.2 Oct 18 2019 11:21:36
-		GETINFO:VERSION_PLC,CP2980I   B 2.7 1.9
-		GETINFO:IPADDR,192.168.134.176
-		GETINFO:EPSADDR,1
-		GETINFO:EPSPORT,61682
+        GETINFO:VERSION,Ver 5.9 May 9 2022 11:19:25
+        GETINFO:VERSION_EPSNET,Ver 3.5 May 9 2022 11:19:21
+        GETINFO:VERSION_INI,Ver 3.2 May 9 2022 11:19:25
+        GETINFO:VERSION_PLC,CP2080I   B 2.7 2.1
+        GETINFO:IPADDR,192.168.134.176
+        GETINFO:EPSADDR,1
+        GETINFO:EPSPORT,61682
 		GETINFO:PUBFILE,2/2 [FIXED_Foxtrot.pub,//iFoxtrot.pub]
 		GETINFO:NETWORK,1/128 [127.0.0.1]
 		GETINFO:\n
