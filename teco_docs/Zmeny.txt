@@ -5,6 +5,32 @@
 
 
 ---------------------------------------------------------------------------
+    Verze 5.9					Zkompilovano 09.05.2022
+---------------------------------------------------------------------------
+
+	- Oprava. Nahrazeno slovo 'register(s)' za 'variable(s)' v chybovych zpravach.
+	- Oprava. Odstranena promenna DIFF_VAR_ENABLED_DI.
+	- Oprava zpracovani SET: prikazu u nesledovanych promennych. Promenne se do PLC posilaji najednou a ne po jedne.
+	- Oprava chyby na architekture AARCH64 (Debian bullseye): PLCComS->RealizeCommObject():: Unable to set stack size for MEM thread attributes!
+
+---------------------------------------------------------------------------
+    Verze 5.8					Zkompilovano 16.12.2021
+---------------------------------------------------------------------------
+
+	- Funkce crcPLC() nahrazena tabulkou. Rychlejsi vypocet.
+
+	- Oprava skladani klientskych dotazu. Problem s PLC funkcnim blokem pro synchronizaci promennych (iCool).
+	- Oprava stahovani PUB souboru pri zmene projektu pomoci TTR. Kdyz neni zapnut zapis souboru, tak se pri chybe nestahne PUB soubor.
+	- Oprava. Kvuli rychlosti je na panelech ID-3x vypnuto paralelni ziskavani dat prikazem GETMEM:.Promenna MEM_USE_THREADS.
+	- Oprava. Kvuli rychlosti je na panelech ID-3x vypnouto generovani DIFF: zprav u zakazanych promennych. Promenna DIFF_VAR_ENABLED_DI.
+	- Oprava. Pri odesilani odpevedi se nezpracovavaji dotazy. Jsouli odpovedi dlouhe a posilaji se po castech, tak se nesmi nijak narusit.
+	- Oprava. Pokud je CRC projektu 0, tak funkce InitPubfileCommObject() skonci chybou a nastahuje PUB soubor.
+	- Oprava. DIFF: zpravy se posilaji jako posledni, aby nenarusovali odesilane odpovedi.
+	- Oprava ztraty promennych v odpovedich LIST:, GET: a DIFF:. Pokud je odpoved dlouha a rozdeli se, tak se ze seznamu zpracovanich polozek smaze i jedna nezpracovana polozka.
+	- Oprava. Dotaz GETINFO:NETWORK je seznam a tak take musi byt zakoncen.
+	- Oprava padu aplikace pri zmene projektu. Pokud se meni projekt v PLC pomoci TTR balicku, tak vypadne EPSNET komunikace a nestahne se PUB soubor. Problem s verzi FW 3.9 na CP-2xxx.
+
+---------------------------------------------------------------------------
     Verze 5.7					Zkompilovano 15.12.2020
 ---------------------------------------------------------------------------
 
