@@ -5,6 +5,13 @@
 
 
 ---------------------------------------------------------------------------
+    Verze 6.0					Zkompilovano 24.06.2022
+---------------------------------------------------------------------------
+
+	- Oprava nastaveni RT priority. Hodnota promenne COMM_SCHED_PRI = 0 nastavila RT planovac na prioritu 1.
+	- Oprava prikazu GETINFO:. Pri pripojeni vice klientu nebyla odpoved zakoncena jako zeznam. Tedy praznym prikazem GETINFO:
+
+---------------------------------------------------------------------------
     Verze 5.9					Zkompilovano 09.05.2022
 ---------------------------------------------------------------------------
 
@@ -197,7 +204,7 @@
 	- Pri zmene komunikacnich parametru PLC zkusi server aktualizovat PUB soubor a klientovi to ohlasi zpravou 250 nebo 251.
 	- Pridan zapis souboru pomoci prikazu WRITEFILE: a WRITEFILEINFO:
 	- Zrychlena reakce serveru na klientske dotazy. Krome panelu ID-18/28, ktere nemaji dostatecny vykon. To znamena, ze kdyz prijde dotaz od klienta, tak se prerusi sleep v hlavni smycce.
-	  Sleep se take prerusit v pripade zpracovani prikazu SET:. To je dulezite kvuli rychle odpovedi zpravou DIFF:.
+	  Sleep se take prerusit v pripade zpracovani prikazu SET:. To je dulezite kvuli rychle odpovedi zpravou DIFF:.
 	- Pro mereni casu se v hlavni smycce nepouziva funkce getdifftime(), ale gettimeofday() a makro timersub().
 
 	- Opravena chyba. V pripade, ze neni nastavena promenna PUBFILE_WRITE, tak se PUB soubor hleda v korenovem adresari serveru.
