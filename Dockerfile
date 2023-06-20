@@ -1,5 +1,5 @@
 # Download base image Linux Debian
-FROM debian
+FROM debian:bullseye
 LABEL maintainer "Jaroslav Vacha <rosiste@gmail.com>"
 
 # Define the ports the container will listen on
