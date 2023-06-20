@@ -5,6 +5,25 @@
 
 
 ---------------------------------------------------------------------------
+    Verze 6.1					Zkompilovano 01.06.2023
+---------------------------------------------------------------------------
+
+	- Pridan vypis zasobniku pri padu aplikace.
+
+	- Oprava problemu s On-Line zmenou programu. Po zmene CRC programu se nejprve nacte novy PUB soubor, pak se smaze obraz pameti PLC a nacte se obraz novy.
+	- Oprava prace s nesledovanymi promennymi. Pri nastaveni promenne se vzdy vygeneruje DIFF: zprava.
+	- Oprava. Zrychleni odesilani dlouhych odpovedi pro klientske dotazy. Dlouhe odpovedi se posilaji po castech a je proto potreba zkratit dobu cyklu, dokud se vse neodesle.
+	- Oprava zobrazeni inentifikacniho retezce PLC. Nebyla zobrazena cela verze FW PLC.
+	- Oprava posilani WARNING: a ERROR: zprav pri On-Line zmene programu PLC. Pokud se behem zmeny vygeneruje prilis mnoho DIFF: zprav, tak se WARNING: ani ERROR: zpravy neodeslou kvuli ochrane proti zahlceni klienta.
+
+---------------------------------------------------------------------------
+    Verze 6.0					Zkompilovano 24.06.2022
+---------------------------------------------------------------------------
+
+	- Oprava nastaveni RT priority. Hodnota promenne COMM_SCHED_PRI = 0 nastavila RT planovac na prioritu 1.
+	- Oprava prikazu GETINFO:. Pri pripojeni vice klientu nebyla odpoved zakoncena jako zeznam. Tedy praznym prikazem GETINFO:
+
+---------------------------------------------------------------------------
     Verze 5.9					Zkompilovano 09.05.2022
 ---------------------------------------------------------------------------
 
